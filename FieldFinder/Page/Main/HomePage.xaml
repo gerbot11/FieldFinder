@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:main="clr-namespace:FieldFinder.Page.Main"
+       xmlns:sub="clr-namespace:FieldFinder.Page.Submenu"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FieldFinder.Page.Main.HomePage"
+       Shell.NavBarIsVisible="False"
+       Shell.NavBarHasShadow="True"
+       >
+
+    <TabBar Shell.TabBarBackgroundColor="{StaticResource Accent}" Shell.UnselectedColor="{StaticResource Background}" Shell.TitleColor="#d8eb34">
+        <Tab Title="Home" Icon="home.png">
+            <ShellContent ContentTemplate="{DataTemplate main:MainPageV2}">
+
+            </ShellContent>
+        </Tab>
+        <Tab Title="Jadwal" Icon="calendar.png">
+            <ShellContent>
+                
+            </ShellContent>
+        </Tab>
+        <Tab Title="Bookmark" Icon="bookmark.png">
+            <ShellContent ContentTemplate="{DataTemplate sub:VendorSchedule}">
+            </ShellContent>
+        </Tab>
+        <Tab Title="Profile" Icon="user.png">
+            <ShellContent>
+
+            </ShellContent>
+        </Tab>
+    </TabBar>
+    
+</Shell>

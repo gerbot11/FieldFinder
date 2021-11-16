@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="FieldFinder.Page.MainPageV2Page"
+             BackgroundImageSource="bg1.png"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="385"/>
+        </Grid.RowDefinitions>
+
+        <ContentView Grid.Row="1" x:Name="TopHeader" BackgroundColor="Transparent" >
+            <Grid VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Frame HasShadow="True" Margin="20,10" Padding="5" HeightRequest="50" HorizontalOptions="FillAndExpand" Grid.Row="1" BackgroundColor="Transparent">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="1" Source="location.png" WidthRequest="20"></Image>
+                        <Label Grid.Column="2" Text="{Binding CurrentCity}" TextColor="{StaticResource Background}" FontSize="15" FontFamily="BoldFont" Margin="-10,0" VerticalOptions="CenterAndExpand"/>
+                        <Image Grid.Column="3" HorizontalOptions="EndAndExpand" Source="bell.png" xct:IconTintColorEffect.TintColor="{StaticResource Background}" Margin="-10,10"/>
+                    </Grid>
+                </Frame>
+                <Frame HasShadow="True" Margin="20,10" Padding="5" HeightRequest="10" HorizontalOptions="FillAndExpand" Grid.Row="2" >
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <StackLayout Grid.Column="1"
+                               HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                            <Label Text="Cari Sesuatu" TextColor="Black" FontSize="20" Margin="20,0" FontFamily="SemiBoldFont"></Label>
+                        </StackLayout>
+                        <Image Grid.Column="2" HeightRequest="20" WidthRequest="40" Margin="20,0" Source="search3.png"/>
+                    </Grid>
+                </Frame>
+
+
+            </Grid>
+        </ContentView>
+
+        <StackLayout Grid.Row="2" BackgroundColor="{StaticResource Background}">
+            <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
+
+                <StackLayout>
+                    <!--Daftar Menu Lapangan-->
+                    <Label Text="Lapangan" TextColor="{StaticResource Accent3}" Padding="15" FontSize="15" FontFamily="ThemeFontBold"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="30">
+                        <StackLayout Margin="5" HorizontalOptions="StartAndExpand">
+                            <ImageButton HorizontalOptions="Center" Source="football.png" HeightRequest="50"></ImageButton>
+                            <Label Text="Futsal" TextColor="Black" FontSize="10" Margin="0" HorizontalOptions="Center"></Label>
+                        </StackLayout>
+                        <StackLayout Margin="5" HorizontalOptions="StartAndExpand">
+                            <ImageButton HorizontalOptions="Center" Source="basketball.png" HeightRequest="50"></ImageButton>
+                            <Label Text="Basket" TextColor="Black" FontSize="10" Margin="0" HorizontalOptions="Center"></Label>
+                        </StackLayout>
+                        <StackLayout Margin="5" HorizontalOptions="StartAndExpand">
+                            <ImageButton HorizontalOptions="Center" Source="badminton.png" HeightRequest="50"></ImageButton>
+                            <Label Text="Bulutangkis" TextColor="Black" FontSize="10" Margin="0" HorizontalOptions="Center"></Label>
+                        </StackLayout>
+                        <StackLayout Margin="5" HorizontalOptions="StartAndExpand">
+                            <ImageButton HorizontalOptions="Center" Source="dumbbell.png" HeightRequest="50"></ImageButton>
+                            <Label Text="Gym" TextColor="Black" FontSize="10" Margin="0" HorizontalOptions="Center"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                    <!--Daftar Menu Lapangan-->
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="1" Text="Daerah Kamu" TextColor="{StaticResource Accent3}" FontSize="15" FontFamily="ThemeFontBold" Padding="10"/>
+                    </Grid>
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <StackLayout BackgroundColor="Transparent" BindableLayout.ItemsSource="{Binding ListNearYou}" Orientation="Horizontal" >
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <pv:PancakeView HeightRequest="190" Margin="5,10" CornerRadius="5" BackgroundColor="White" Padding="10">
+                                        <pv:PancakeView.Shadow>
+                                            <pv:DropShadow Color="Black" Offset="10,10"></pv:DropShadow>
+                                        </pv:PancakeView.Shadow>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding GoToDetailPage}" />
+                                            </Grid.GestureRecognizers>
+                                            <Image HeightRequest="115" Aspect="AspectFill" Source="{Binding Image}" />
+                                            <Image Source="bookmark.png" HorizontalOptions="End" Margin="12" HeightRequest="16" VerticalOptions="Start"/>
+                                            <Grid VerticalOptions="End" Margin="15">
+                                                <pv:PancakeView CornerRadius="13" Padding="15,5" BackgroundColor="Black" Opacity="0.5" 
+                                                    HorizontalOptions="Start" VerticalOptions="Start">
+                                                    <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Start">
+                                                        <Image HeightRequest="12" WidthRequest="12" Source="location.png" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                                        <Label Text="{Binding Location}" FontSize="12" TextColor="White" FontFamily="ThemeFontRegular" VerticalOptions="Center"/>
+                                                    </StackLayout>
+                                                </pv:PancakeView>
+                                            </Grid>
+                                            <StackLayout Grid.Row="1" Spacing="5" Margin="20,5">
+                                                <Label Text="{Binding Price}" FontSize="15" FontFamily="ThemeFontBold" TextColor="#515151"/>
+                                                <StackLayout Orientation="Horizontal" Spacing="15">
+                                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                                        <Label Text="Futsal" FontSize="12" FontFamily="ThemeFontRegular" TextColor="#707070"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal" Spacing="15">
+                                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                                        <Image WidthRequest="16" Source="review.png"/>
+                                                        <Label Text="{Binding Review}" FontSize="12" FontFamily="ThemeFontRegular" TextColor="#707070"/>
+
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </Grid>
+                                    </pv:PancakeView>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+
+                    <StackLayout>
+                        <Image Source="futsal.png"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+
+
+        </StackLayout>
+
+        <Frame Grid.Row="3" CornerRadius="10" Margin="0,-15" BackgroundColor="{StaticResource Accent2}" HasShadow="True" >
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <StackLayout Margin="5" HorizontalOptions="CenterAndExpand">
+                    <ImageButton Source="home.png" xct:IconTintColorEffect.TintColor="White" WidthRequest="30" Margin="-10" BackgroundColor="Transparent"></ImageButton>
+                </StackLayout>
+                <StackLayout Margin="5" HorizontalOptions="CenterAndExpand">
+                    <ImageButton Source="user.png" xct:IconTintColorEffect.TintColor="White" WidthRequest="30" Margin="-10" BackgroundColor="Transparent"></ImageButton>
+                </StackLayout>
+                <StackLayout Margin="5" HorizontalOptions="CenterAndExpand">
+                    <ImageButton Source="home.png" xct:IconTintColorEffect.TintColor="White" WidthRequest="30" Margin="-10" BackgroundColor="Transparent"></ImageButton>
+                </StackLayout>
+                <StackLayout Margin="5" HorizontalOptions="CenterAndExpand">
+                    <ImageButton Source="user.png" xct:IconTintColorEffect.TintColor="White" WidthRequest="30" Margin="-10" BackgroundColor="Transparent" ></ImageButton>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
